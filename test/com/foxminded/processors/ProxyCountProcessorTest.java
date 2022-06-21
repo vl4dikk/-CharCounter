@@ -2,7 +2,7 @@ package com.foxminded.processors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.never;
 
 import java.util.LinkedHashMap;
 
@@ -15,14 +15,14 @@ import com.foxminded.count.processors.ProxyCountProcessor;
 import com.foxminded.count.processors.RealCountProcessor;
 
 class ProxyCountProcessorTest {
-	
+
 	ProxyCountProcessor processor = new ProxyCountProcessor();
-	LinkedHashMap<Character, Integer> test = new LinkedHashMap<Character, Integer>();	
-	
+	LinkedHashMap<Character, Integer> test = new LinkedHashMap<Character, Integer>();
+
 	@Mock
 	Cache cache = new Cache();
 	RealCountProcessor realProcessor = mock(RealCountProcessor.class);
-	
+
 	@Test
 	void testCountingWithCache_ShouldNotUseRealCountProcessor_WhenAnswerIsInCache() {
 		test.put('H', 1);
@@ -36,7 +36,7 @@ class ProxyCountProcessorTest {
 		test.put('!', 1);
 		cache.set("Hello World", test);
 		assertEquals(test, processor.count(cache, "Hello World!"));
-		Mockito.verify(realProcessor, times(0));
+		Mockito.verify(realProcessor, never());
 	}
 
 }

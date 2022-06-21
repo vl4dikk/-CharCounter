@@ -12,6 +12,7 @@ import com.foxminded.count.processors.RealCountProcessor;
 class RealCountProcessorTest {
 
 	RealCountProcessor processor = new RealCountProcessor();
+
 	@Test
 	void testCounting_ShouldReturnLinkedHashMap_WhenStringIsNotNull() {
 		LinkedHashMap<Character, Integer> expected = new LinkedHashMap<Character, Integer>();
@@ -24,7 +25,8 @@ class RealCountProcessorTest {
 		expected.put('r', 1);
 		expected.put('d', 1);
 		expected.put('!', 1);
-		assertEquals(expected, processor.count(new Cache(), "Hello World!"));;
+		assertEquals(expected, processor.count(new Cache(), "Hello World!"));
+		;
 	}
 
 }
