@@ -53,7 +53,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.foxminded.division.DivisionApplication</mainClass>
+							<mainClass>com.foxminded.count.CharCounterApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
