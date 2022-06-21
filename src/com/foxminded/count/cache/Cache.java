@@ -5,19 +5,13 @@ import java.util.Map;
 
 public class Cache {
 
-	private Map<String, Map<Character, Integer>> cache;
+	private Map<String, LinkedHashMap<Character, Integer>> cache = new LinkedHashMap<String, LinkedHashMap<Character, Integer>>();
 
-	public Cache(int size) {
-		this.cache = new LinkedHashMap<String, Map<Character, Integer>>(size);
-	}
-
-
-	public Map<String, Map<Character, Integer>> getCache() {
+	public Map<String, LinkedHashMap<Character, Integer>> getCache() {
 		return cache;
 	}
 
-
-	public Map<Character, Integer> set(String input, Map<Character, Integer> mapAfterProcessor) {
+	public LinkedHashMap<Character, Integer> set(String input, LinkedHashMap<Character, Integer> mapAfterProcessor) {
 		return this.cache.put(input, mapAfterProcessor);
 	}
 }

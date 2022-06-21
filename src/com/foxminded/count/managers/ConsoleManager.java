@@ -13,7 +13,7 @@ public class ConsoleManager {
 	public void run() throws IOException {
 		ViewManager view = new ViewManager();
 		CountProcessor processor = new ProxyCountProcessor();
-		Cache cache = new Cache(3);
+		Cache cache = new Cache();
 		InputStreamReader streamReader = new InputStreamReader(System.in);
 		BufferedReader bufferedReader = new BufferedReader(streamReader);
 		try {

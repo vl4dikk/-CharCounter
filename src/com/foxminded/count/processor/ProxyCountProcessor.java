@@ -1,6 +1,6 @@
 package com.foxminded.count.processor;
 
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 import com.foxminded.count.cache.Cache;
 
@@ -9,7 +9,7 @@ public class ProxyCountProcessor implements CountProcessor {
 	RealCountProcessor processor = new RealCountProcessor();
 
 	@Override
-	public Map<Character, Integer> count(Cache cache, String input) {
+	public LinkedHashMap<Character, Integer> count(Cache cache, String input) {
 		if(cache.getCache() == null) {
 			return processor.count(cache, input);
 		}
