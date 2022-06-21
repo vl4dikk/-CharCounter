@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import com.foxminded.count.cache.Cache;
-import com.foxminded.count.processor.CountProcessor;
-import com.foxminded.count.processor.ProxyCountProcessor;
+import com.foxminded.count.processors.CountProcessor;
+import com.foxminded.count.processors.ProxyCountProcessor;
 
 public class ConsoleManager {
 

@@ -1,4 +1,4 @@
-package com.foxminded.count.processor;
+package com.foxminded.count.processors;
 
 import java.util.LinkedHashMap;
 
