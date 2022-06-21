@@ -1,19 +1,25 @@
 package com.foxminded.processors;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 
 import java.util.LinkedHashMap;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.foxminded.count.cache.Cache;
 import com.foxminded.count.processors.ProxyCountProcessor;
 import com.foxminded.count.processors.RealCountProcessor;
 
+@RunWith(MockitoJUnitRunner.class)
 class ProxyCountProcessorTest {
 
 	ProxyCountProcessor processor = new ProxyCountProcessor();
