@@ -45,7 +45,7 @@ class ProxyCountProcessorTest {
 		test.put('!', 1);
 		cache.set("Hello World", test);
 		when(cache.getCache().get("Hello World!")).thenReturn(test);
-		Mockito.verify(realProcessor.count("Hello World!"), never());
+		Mockito.verify(realProcessor, never());
 		assertEquals(test, processor.count("Hello World!"));
 	}
 
