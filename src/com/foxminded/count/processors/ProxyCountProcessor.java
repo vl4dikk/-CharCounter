@@ -11,15 +11,15 @@ public class ProxyCountProcessor implements CountProcessor {
 
 	@Override
 	public LinkedHashMap<Character, Integer> count(String input) {
-		if(input == null) {
+		if (input == null) {
 			throw new NullPointerException();
-		} else if (cache.getCache().containsKey(input)) {
-			return cache.getCache().get(input);
+		} else if (cache.exist(input)) {
+			return cache.get(input);
 		} else
 			return getRealProcessor(input);
 	}
-	
-	private LinkedHashMap<Character, Integer> getRealProcessor(String input){
+
+	private LinkedHashMap<Character, Integer> getRealProcessor(String input) {
 		cache.set(input, processor.count(input));
 		return processor.count(input);
 	}

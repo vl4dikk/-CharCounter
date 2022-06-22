@@ -1,14 +1,17 @@
 package com.foxminded.count.cache;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Cache {
 
 	private LinkedHashMap<String, LinkedHashMap<Character, Integer>> cache = new LinkedHashMap<String, LinkedHashMap<Character, Integer>>();
 
-	public Map<String, LinkedHashMap<Character, Integer>> getCache() {
-		return cache;
+	public boolean exist(String input) {
+		return cache.containsKey(input);
+	}
+
+	public LinkedHashMap<Character, Integer> get(String input) {
+		return cache.get(input);
 	}
 
 	public LinkedHashMap<Character, Integer> set(String input, LinkedHashMap<Character, Integer> mapAfterProcessor) {
