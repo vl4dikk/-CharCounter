@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Cache {
 
-	private Map<String, LinkedHashMap<Character, Integer>> cache = new LinkedHashMap<String, LinkedHashMap<Character, Integer>>();
+	private LinkedHashMap<String, LinkedHashMap<Character, Integer>> cache = new LinkedHashMap<String, LinkedHashMap<Character, Integer>>();
 
 	public Map<String, LinkedHashMap<Character, Integer>> getCache() {
 		return cache;
