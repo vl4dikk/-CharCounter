@@ -2,12 +2,10 @@ package com.foxminded.count.processors;
 
 import java.util.LinkedHashMap;
 
-import com.foxminded.count.cache.Cache;
-
 public class RealCountProcessor implements CountProcessor {
 
 	@Override
-	public LinkedHashMap<Character, Integer> count(Cache cache, String input) {
+	public LinkedHashMap<Character, Integer> count(String input) {
 		LinkedHashMap<Character, Integer> charCountMap = new LinkedHashMap<Character, Integer>();
 		char[] strArray = input.toCharArray();
 
@@ -18,7 +16,6 @@ public class RealCountProcessor implements CountProcessor {
 				charCountMap.put(strArray[i], 1);
 			}
 		}
-		cache.set(input, charCountMap);
 		return charCountMap;
 	}
 

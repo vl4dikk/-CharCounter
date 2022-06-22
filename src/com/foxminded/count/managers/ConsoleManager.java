@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.foxminded.count.cache.Cache;
 import com.foxminded.count.processors.CountProcessor;
 import com.foxminded.count.processors.ProxyCountProcessor;
 
@@ -13,14 +12,13 @@ public class ConsoleManager {
 	public void run() throws IOException {
 		ViewManager view = new ViewManager();
 		CountProcessor processor = new ProxyCountProcessor();
-		Cache cache = new Cache();
 		InputStreamReader streamReader = new InputStreamReader(System.in);
 		BufferedReader bufferedReader = new BufferedReader(streamReader);
 		try {
 			System.out.println("Enter your string: ");
 			final String input = bufferedReader.readLine();
 
-			System.out.println(view.formatView(processor.count(cache, input)));
+			System.out.println(view.formatView(processor.count(input)));
 		} catch (Exception ex) {
 			System.out.println("Error has been occured: " + ex.getLocalizedMessage());
 			ex.printStackTrace();

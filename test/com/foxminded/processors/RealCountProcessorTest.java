@@ -6,12 +6,11 @@ import java.util.LinkedHashMap;
 
 import org.junit.jupiter.api.Test;
 
-import com.foxminded.count.cache.Cache;
 import com.foxminded.count.processors.RealCountProcessor;
 
 class RealCountProcessorTest {
 
-	RealCountProcessor processor = new RealCountProcessor();
+	private RealCountProcessor processor = new RealCountProcessor();
 
 	@Test
 	void testCounting_ShouldReturnLinkedHashMap_WhenStringIsNotNull() {
@@ -25,7 +24,7 @@ class RealCountProcessorTest {
 		expected.put('r', 1);
 		expected.put('d', 1);
 		expected.put('!', 1);
-		assertEquals(expected, processor.count(new Cache(), "Hello World!"));
+		assertEquals(expected, processor.count("Hello World!"));
 		;
 	}
 
