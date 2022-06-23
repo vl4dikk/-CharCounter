@@ -1,40 +1,51 @@
 package com.foxminded.processors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
 
 import java.util.LinkedHashMap;
 
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.foxminded.count.cache.Cache;
 import com.foxminded.count.processors.ProxyCountProcessor;
+import com.foxminded.count.processors.RealCountProcessor;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class ProxyCountProcessorTest {
 
-	private Cache cache = mock(Cache.class);
+	@Mock
+	private RealCountProcessor realCountProcessor;
+
+	@Mock
+	private Cache cache;
 
 	@InjectMocks
-	private ProxyCountProcessor processor = new ProxyCountProcessor();
+	private ProxyCountProcessor processor;
 
 	@Test
 	void testCountingWithCache_ShouldNotUseRealCountProcessor_WhenAnswerIsInCache() {
 		String input = "Hello World!";
-		LinkedHashMap<Character, Integer> test = new LinkedHashMap<Character, Integer>();
+		LinkedHashMap<Character, Integer> test = prepareTestMap();
+
+		Mockito.when(cache.get(input)).thenReturn(test);
+		Mockito.when(cache.exist(input)).thenReturn(false, true);
+		Mockito.when(realCountProcessor.count(input)).thenReturn(test);
+
+		assertEquals(test, processor.count(input));
+		assertEquals(test, processor.count(input));
+
+		Mockito.verify(cache, Mockito.times(1)).get(input);
+		Mockito.verify(realCountProcessor, Mockito.times(1)).count(input);
+
+	}
+
+	private LinkedHashMap<Character, Integer> prepareTestMap() {
+		LinkedHashMap<Character, Integer> test = new LinkedHashMap<>();
 		test.put('H', 1);
 		test.put('e', 1);
 		test.put('l', 3);
@@ -44,11 +55,8 @@ class ProxyCountProcessorTest {
 		test.put('r', 1);
 		test.put('d', 1);
 		test.put('!', 1);
-//		cache.set(input, test);
-		Mockito.when(cache.get(input)).thenReturn(test);
-		assertEquals(test, processor.count(input));
-		Mockito.verify(cache, atLeastOnce()).get(input);
 
+		return test;
 	}
 
 }

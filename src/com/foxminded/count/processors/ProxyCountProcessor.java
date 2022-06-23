@@ -16,12 +16,13 @@ public class ProxyCountProcessor implements CountProcessor {
 		} else if (cache.exist(input)) {
 			return cache.get(input);
 		} else
-			return getRealProcessor(input);
+		return getRealProcessor(input);
 	}
-
-	private LinkedHashMap<Character, Integer> getRealProcessor(String input) {
-		cache.set(input, processor.count(input));
-		return processor.count(input);
+	
+	public LinkedHashMap<Character, Integer> getRealProcessor(String input) {
+		LinkedHashMap<Character, Integer> iteracion = processor.count(input);
+		cache.set(input, iteracion);
+		return iteracion;
 	}
 
 }
